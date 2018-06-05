@@ -23,7 +23,7 @@ public class MergeSort {
     }
 
     public static void mergeArray(int[] a, int low, int high, int mid) {
-        int i = low;
+        int l = low;
         int h = high;
         int m = mid;
         int j = m + 1;
@@ -31,10 +31,10 @@ public class MergeSort {
 
         int[] temp = new int[a.length];
 
-        while (i <= mid && j <= h) {
-            if (a[i] < a[j]) {
-                temp[k] = a[i];
-                i++;
+        while (l <= mid && j <= h) {
+            if (a[l] < a[j]) {
+                temp[k] = a[l];
+                l++;
                 k++;
             } else {
                 temp[k] = a[j];
@@ -43,9 +43,9 @@ public class MergeSort {
             }
         }
 
-        while (i <= mid) {
-            temp[k] = a[i];
-            i++;
+        while (l <= mid) {
+            temp[k] = a[l];
+            l++;
             k++;
         }
         while (j <= h) {

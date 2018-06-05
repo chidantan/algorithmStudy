@@ -1,6 +1,7 @@
 package sort;
 
 import common.Constants;
+import common.Swap;
 
 import java.util.Arrays;
 
@@ -9,30 +10,16 @@ import java.util.Arrays;
  */
 public class BuddleSort {
     public static void main(String[] args) {
-        heapSort(Constants.INT_ARRAY);
+        buddleSort(Constants.INT_ARRAY);
         System.out.println(Arrays.toString(Constants.INT_ARRAY));
     }
 
-    public static void heapSort(int[] a) {
-        int n = a.length;
-        while (true) {
-            n = n / 2;
-            for (int k = 0; k < n; k++) {
-                for (int i = k+n; i < a.length; i+=n) {
-                    int temp = a[i];
-                    int j;
-                    for (j = i - n; j >= 0; j-=n) {
-                        if (a[j] > temp) {
-                            a[j + n] = a[j];
-                        } else {
-                            break;
-                        }
-                    }
-                    a[j + n] = temp;
+    public static void buddleSort(int[] a) {
+        for (int i = 0; i < a.length; i++) {
+            for (int j = a.length - 1; j > i; j--) {
+                if (a[j] < a[j - 1]) {
+                    Swap.swapNum(a, j, j - 1);
                 }
-            }
-            if (n == 1) {
-                break;
             }
         }
     }
