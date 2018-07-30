@@ -9,56 +9,103 @@ import java.util.Arrays;
  */
 public class MergeSort {
     public static void main(String[] args) {
-        mergeSort(Constants.INT_ARRAY,0,9);
+        mergeSort(Constants.INT_ARRAY, 0, 9);
         System.out.println(Arrays.toString(Constants.INT_ARRAY));
     }
 
-    public static void mergeSort(int[] a, int low, int high) {
-        if(low<high){
-            int mid = (low+high)/2;
-            mergeSort(a,low,mid);
-            mergeSort(a,mid+1,high);
-            mergeArray(a,low,high,mid);
+
+    public static void mergeSort(int[] array, int low, int high) {
+        if (low >= high) {
+            return;
         }
+        int mid = (low + high) >>> 1;
+        mergeSort(array, low, mid);
+        mergeSort(array, mid + 1, high);
+        merge(array, low, high, mid);
     }
 
-    public static void mergeArray(int[] a, int low, int high, int mid) {
+
+    public static void merge(int[] array, int low, int high, int mid) {
+        int[] tempArray = new int[array.length];
         int l = low;
         int h = high;
         int m = mid;
         int j = m + 1;
         int k = 0;
-
-        int[] temp = new int[a.length];
-
-        while (l <= mid && j <= h) {
-            if (a[l] < a[j]) {
-                temp[k] = a[l];
+        while (l <= mid && j <= high) {
+            if (array[l] < array[h]) {
+                tempArray[k] = array[l];
                 l++;
                 k++;
             } else {
-                temp[k] = a[j];
+                tempArray[k] = array[j];
                 j++;
                 k++;
             }
         }
-
         while (l <= mid) {
-            temp[k] = a[l];
+            tempArray[k] = array[l];
             l++;
             k++;
         }
-        while (j <= h) {
-            temp[k] = a[j];
+        while (j <= high) {
+            tempArray[k] = array[j];
             j++;
             k++;
         }
-
-        for (int jj =0;jj<k;jj++){
-            a[low+jj] = temp[jj];
+        for (int i = 0; i <k; i++) {
+            array[i+low] = tempArray[i];
         }
-
     }
+
+
+//
+//    public static void mergeSort(int[] a, int low, int high) {
+//        if(low<high){
+//            int mid = (low+high)/2;
+//            mergeSort(a,low,mid);
+//            mergeSort(a,mid+1,high);
+//            mergeArray(a,low,high,mid);
+//        }
+//    }
+
+//    public static void mergeArray(int[] a, int low, int high, int mid) {
+//        int l = low;
+//        int h = high;
+//        int m = mid;
+//        int j = m + 1;
+//        int k = 0;
+//
+//        int[] temp = new int[a.length];
+//
+//        while (l <= mid && j <= h) {
+//            if (a[l] < a[j]) {
+//                temp[k] = a[l];
+//                l++;
+//                k++;
+//            } else {
+//                temp[k] = a[j];
+//                j++;
+//                k++;
+//            }
+//        }
+//
+//        while (l <= mid) {
+//            temp[k] = a[l];
+//            l++;
+//            k++;
+//        }
+//        while (j <= h) {
+//            temp[k] = a[j];
+//            j++;
+//            k++;
+//        }
+//
+//        for (int jj =0;jj<k;jj++){
+//            a[low+jj] = temp[jj];
+//        }
+//
+//    }
 
 
 //    public static void mergeSort(int[]a,int start,int end){

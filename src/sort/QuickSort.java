@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class QuickSort {
 
     public static void main(String[] args) {
-        quickSort(Constants.INT_ARRAY,0,Constants.INT_ARRAY.length-1);
+        quickSort(Constants.INT_ARRAY, 0, Constants.INT_ARRAY.length - 1);
         System.out.println(Arrays.toString(Constants.INT_ARRAY));
     }
 
@@ -18,22 +18,22 @@ public class QuickSort {
         if (low >= high) {
             return;
         }
-        int i = low;
-        int j = high;
-        int temp = array[i];
-        while (i < j) {
-            while (i < j && array[j] >= temp) {
-                j--;
+        int l = low;
+        int h = high;
+        int temp = array[low];
+        while (l < h) {
+            while (l < h && array[h] > temp) {
+                h--;
             }
-            array[i] = array[j];
-            while (i < j && array[i] < temp) {
-                i++;
+            array[l] = array[h];
+            while (l < h && array[low] <= temp) {
+                l++;
             }
-            array[j] = array[i];
+            array[h] = array[l];
         }
-        array[i] = temp;
-        quickSort(array,low,i-1);
-        quickSort(array,i+1,high);
+        array[l] = temp;
+        quickSort(array,low,l-1);
+        quickSort(array,l+1,high);
     }
 
 
